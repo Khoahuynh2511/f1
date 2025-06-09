@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+/* F1 Theme Variables */
+:root {
+  /* F1 Brand Colors */
+  --f1-red: #e00400;
+  --f1-red-dark: #c10300;
+  --f1-red-light: #ff1e15;
+  
+  /* Team Colors */
+  --red-bull: #0000ff;
+  --mercedes: #00d2be;
+  --ferrari: #dc143c;
+  --mclaren: #ff8700;
+  --alpine: #0090ff;
+  --aston-martin: #006f62;
+  --williams: #005aff;
+  --haas: #ffffff;
+  --rb: #6692ff;
+  --sauber: #52c41a;
+  
+  /* Racing Colors */
+  --gold: #ffd700;
+  --silver: #c0c0c0;
+  --bronze: #cd7f32;
+  --checkered: #000000;
+  
+  /* Speed Gradient */
+  --speed-gradient: linear-gradient(45deg, var(--f1-red), var(--mclaren), var(--mercedes));
+  --fast-gradient: linear-gradient(90deg, #ff0000, #ff4500, #ffa500);
+}
+
+/* Dark theme overrides */
+.dark {
+  --f1-red: #ff1e15;
+  --gold: #ffed4e;
+  --silver: #e5e7eb;
+}
+
+/* F1 Card Styles */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -1px rgb(0 0 0 / 0.06),
+    0 0 0 1px rgb(0 0 0 / 0.05);
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--speed-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 25px -5px rgb(0 0 0 / 0.15),
+    0 4px 6px -2px rgb(0 0 0 / 0.05);
+}
+
+.dark .card {
+  background-color: rgb(31 41 55);
+  border: 1px solid rgb(55 65 81);
+}
+
+/* F1 Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--f1-red), var(--f1-red-dark));
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--f1-red-light), var(--f1-red));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(224, 4, 0, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(243, 244, 246, 0.8);
+  backdrop-filter: blur(10px);
+  color: rgb(17 24 39);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.btn-secondary:hover {
+  background: rgba(229, 231, 235, 0.9);
+  transform: translateY(-1px);
+}
+
+.dark .btn-secondary {
+  background: rgba(55, 65, 81, 0.8);
+  color: white;
+  border-color: rgba(75, 85, 99, 0.8);
+}
+
+.dark .btn-secondary:hover {
+  background: rgba(75, 85, 99, 0.9);
+}
+
+/* F1 Position Badges */
+.standing-position {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 800;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.standing-position:hover {
+  transform: scale(1.1);
+}
+
+.position-1 {
+  background: linear-gradient(135deg, var(--gold), #ffed4e);
+  color: #92400e;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.position-2 {
+  background: linear-gradient(135deg, var(--silver), #f3f4f6);
+  color: #374151;
+  box-shadow: 0 4px 12px rgba(192, 192, 192, 0.4);
+}
+
+.position-3 {
+  background: linear-gradient(135deg, var(--bronze), #d97706);
+  color: #fef3c7;
+  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.4);
+}
+
+/* Race Status Indicators */
+.race-live {
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.race-upcoming {
+  animation: glow-green 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow-green {
+  from { box-shadow: 0 0 5px #10b981; }
+  to { box-shadow: 0 0 20px #10b981, 0 0 30px #10b981; }
+}
+
+/* Speed Loading Animation */
+.speed-loader {
+  background: linear-gradient(90deg, #f3f4f6, var(--f1-red), #f3f4f6);
+  background-size: 200% 100%;
+  animation: speed-loading 1.5s infinite;
+}
+
+@keyframes speed-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* F1 Typography */
+.f1-title {
+  font-weight: 900;
+  font-size: 2.5rem;
+  background: var(--speed-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.racing-number {
+  font-family: 'Courier New', monospace;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+/* Checkered Flag Pattern */
+.checkered-bg {
+  background-image: 
+    linear-gradient(45deg, #000 25%, transparent 25%), 
+    linear-gradient(-45deg, #000 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #000 75%), 
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Glass Morphism Effects */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(31, 41, 55, 0.8);
+  border-color: rgba(75, 85, 99, 0.3);
+}
+
+/* Responsive Grid */
+.f1-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--f1-red);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--f1-red-dark);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgb(31 41 55);
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: var(--speed-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gradient {
+  border: 2px solid;
+  border-image: var(--speed-gradient) 1;
+} 
