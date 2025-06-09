@@ -14,11 +14,16 @@ import { RaceStatistics } from './pages/RaceStatistics';
 import { Calendar } from './pages/Calendar';
 
 function App() {
-  // Dark mode state
-  const [darkMode] = useState(() => {
+  // Dark mode state - Default to true (dark mode)
+  const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
+    return saved ? JSON.parse(saved) : true; // Changed default to true
   });
+
+  // Toggle dark mode function
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   // Update document class and localStorage when dark mode changes
   useEffect(() => {
@@ -30,11 +35,10 @@ function App() {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
-
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <Navbar />
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
