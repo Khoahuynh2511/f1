@@ -13,12 +13,17 @@ import {
   BoltIcon,
   WrenchScrewdriverIcon,
   ChartBarIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  SunIcon,
+  MoonIcon
 } from '@heroicons/react/24/outline';
 
-interface NavbarProps {}
+interface NavbarProps {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+}
 
-export function Navbar({}: NavbarProps) {
+export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const location = useLocation();
@@ -128,6 +133,19 @@ export function Navbar({}: NavbarProps) {
 
           {/* Right side controls */}
           <div className="flex items-center space-x-4">
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <SunIcon className="h-5 w-5" />
+              ) : (
+                <MoonIcon className="h-5 w-5" />
+              )}
+            </button>
+
             {/* Live Indicator */}
             <div className="hidden sm:flex items-center space-x-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
