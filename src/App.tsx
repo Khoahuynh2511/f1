@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
@@ -14,31 +14,22 @@ import { RaceStatistics } from './pages/RaceStatistics';
 import { Calendar } from './pages/Calendar';
 
 function App() {
-  // Dark mode state - Default to true (dark mode)
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : true; // Changed default to true
-  });
-
-  // Toggle dark mode function
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  // Update document class and localStorage when dark mode changes
+  // Apply dark mode on mount
   useEffect(() => {
+    const saved = localStorage.getItem('darkMode');
+    const darkMode = saved ? JSON.parse(saved) : true; // Default to true (dark mode)
+    
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
+  }, []);
 
   return (
     <Router>
-      <div className="min-h-screen bg-slate-100 dark:bg-gray-900 transition-colors duration-300">
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />

@@ -39,12 +39,12 @@
 
 /* F1 Card Styles */
 .card {
-  background: rgb(249 250 251); /* Light gray background instead of pure white */
-  border: 1px solid rgb(229 231 235); /* Subtle border for definition */
+  background: white;
   border-radius: 12px;
   box-shadow: 
-    0 4px 6px -1px rgb(0 0 0 / 0.08),
-    0 2px 4px -1px rgb(0 0 0 / 0.04);
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -1px rgb(0 0 0 / 0.06),
+    0 0 0 1px rgb(0 0 0 / 0.05);
   padding: 1.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -69,11 +69,9 @@
 
 .card:hover {
   transform: translateY(-2px);
-  background: rgb(255 255 255); /* Pure white on hover for emphasis */
   box-shadow: 
-    0 10px 25px -5px rgb(0 0 0 / 0.12),
-    0 4px 6px -2px rgb(0 0 0 / 0.04);
-  border-color: rgb(209 213 219); /* Slightly darker border on hover */
+    0 10px 25px -5px rgb(0 0 0 / 0.15),
+    0 4px 6px -2px rgb(0 0 0 / 0.05);
 }
 
 .dark .card {
@@ -119,21 +117,19 @@
 }
 
 .btn-secondary {
-  background: rgb(255 255 255); /* Solid white background for better contrast */
-  color: rgb(55 65 81); /* Darker text for better readability */
+  background: rgba(243, 244, 246, 0.8);
+  backdrop-filter: blur(10px);
+  color: rgb(17 24 39);
   font-weight: 600;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   transition: all 0.2s ease;
-  border: 1px solid rgb(209 213 219); /* Defined border */
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); /* Subtle shadow */
+  border: 1px solid rgba(229, 231, 235, 0.8);
 }
 
 .btn-secondary:hover {
-  background: rgb(249 250 251); /* Light gray on hover */
-  border-color: rgb(156 163 175); /* Darker border on hover */
+  background: rgba(229, 231, 235, 0.9);
   transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 .dark .btn-secondary {
@@ -245,16 +241,14 @@
 
 /* Glass Morphism Effects */
 .glass {
-  background: rgba(255, 255, 255, 0.95); /* More opaque for light mode */
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(229, 231, 235, 0.8); /* More visible border */
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); /* Add shadow for depth */
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .dark .glass {
   background: rgba(31, 41, 55, 0.8);
   border-color: rgba(75, 85, 99, 0.3);
-  box-shadow: none; /* Remove shadow in dark mode */
 }
 
 /* Responsive Grid */
@@ -287,29 +281,6 @@
   background: rgb(31 41 55);
 }
 
-/* Light Mode Optimizations */
-@media (prefers-color-scheme: light) {
-  /* Enhanced text contrast in light mode */
-  .text-gray-600 {
-    color: rgb(75 85 99) !important;
-  }
-  
-  .text-gray-700 {
-    color: rgb(55 65 81) !important;
-  }
-  
-  /* Better table styling for light mode */
-  .bg-white {
-    background-color: rgb(255 255 255) !important;
-    border: 1px solid rgb(229 231 235);
-  }
-  
-  /* Enhanced shadow for cards in light mode */
-  .shadow-lg {
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -2px rgb(0 0 0 / 0.04) !important;
-  }
-}
-
 /* Utility Classes */
 .text-gradient {
   background: var(--speed-gradient);
@@ -321,17 +292,4 @@
 .border-gradient {
   border: 2px solid;
   border-image: var(--speed-gradient) 1;
-}
-
-/* Light mode specific overrides */
-:not(.dark) .bg-gray-50 {
-  background-color: rgb(248 250 252) !important;
-}
-
-:not(.dark) .bg-gray-100 {
-  background-color: rgb(241 245 249) !important;
-}
-
-:not(.dark) .border-gray-200 {
-  border-color: rgb(203 213 225) !important;
 } 
